@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<title>Démo Date After Before</title>
+</h:head>
+
+<body>
+
+	<p:growl id="growl" autoUpdate="true" />
+
+	<h:form id="mainForm">
+
+		<h:panelGrid columns="3">
+
+			<p:outputLabel value="Libellé" for="inputLibelle" />
+			<p:inputText id="inputLibelle" value="#{evenementPageBean.libelle}" />
+			<p:message for="inputLibelle" />
+
+			<p:outputLabel value="Date de début" for="inputDebut" />
+			<p:calendar id="inputDebut" value="#{evenementPageBean.debut}">
+				<p:ajax event="dateSelect" update="inputFin" />
+			</p:calendar>
+			<p:message for="inputDebut" />
+
+			<p:outputLabel value="Date de fin" for="inputFin" />
+			<p:calendar id="inputFin" value="#{evenementPageBean.fin}">
+				<f:attribute name="startDate" value="#{evenementPageBean.debut}" />
+				<f:validator validatorId="localDateRangeValidator" />
+			</p:calendar>
+			<p:message for="inputFin" />
+
+			<p:commandButton update="@form"
+							 actionListener="#{evenementPageBean.save()}" 
+							 value="Sauvegarder" />
+
+		</h:panelGrid>
+
+	</h:form>
+
+</body>
+</html>
