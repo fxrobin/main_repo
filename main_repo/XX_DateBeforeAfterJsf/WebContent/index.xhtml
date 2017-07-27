@@ -6,7 +6,8 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
-	<title>Démo Date After Before</title>
+	<title>Démo Date After Before - Omnifaces 2.6.3 - Version qui
+		tue 2</title>
 </h:head>
 
 <body>
@@ -22,23 +23,23 @@
 			<p:message for="inputLibelle" />
 
 			<p:outputLabel value="Date de début" for="inputDebut" />
-			<p:calendar id="inputDebut" value="#{evenementPageBean.debut}">
-				<p:ajax event="dateSelect" update="inputFin" />
-			</p:calendar>
+			<p:calendar id="inputDebut" value="#{evenementPageBean.event.debut}" />
 			<p:message for="inputDebut" />
 
 			<p:outputLabel value="Date de fin" for="inputFin" />
-			<p:calendar id="inputFin" value="#{evenementPageBean.fin}">
-				<f:attribute name="startDate" value="#{evenementPageBean.debut}" />
-				<f:validator validatorId="localDateRangeValidator" />
-			</p:calendar>
+			<p:calendar id="inputFin" value="#{evenementPageBean.event.fin}" />
 			<p:message for="inputFin" />
 
-			<p:commandButton update="@form"
-							 actionListener="#{evenementPageBean.save()}" 
-							 value="Sauvegarder" />
+			<p:commandButton 
+			    update="@form"
+				action="#{evenementPageBean.save}" value="Sauvegarder">
+				<!-- 3 - usage d'omnifaces pour valider le bean et ses dates -->
+				<o:validateBean value="#{evenementPageBean.event}" />
+			</p:commandButton>
 
 		</h:panelGrid>
+
+		<p:messages />
 
 	</h:form>
 
