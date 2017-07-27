@@ -18,7 +18,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface ValidEvenement
 {
-	String message() default "Evenement invalide à cause des dates";
+	String message() default "Evénement invalide à cause des dates";
 
 	Class<?>[] groups() default {};
 
