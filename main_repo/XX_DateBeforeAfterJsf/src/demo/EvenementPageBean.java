@@ -30,14 +30,13 @@ public class EvenementPageBean implements Serializable
 	private String libelle;
 
 	@Getter
-	@Setter	
+	@Setter
 	@Inject
-    private Evenement event;
-	
+	private Evenement event;
 
 	public void save()
-	{		
-			addGlobalInfo("Validation Ok.");
+	{
+		addGlobalInfo("Validation Ok.");
 	}
 
 }
