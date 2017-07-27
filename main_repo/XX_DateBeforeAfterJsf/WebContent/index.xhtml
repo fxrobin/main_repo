@@ -6,42 +6,56 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
-	<title>Démo Date After Before - Omnifaces 2.6.3 - Version qui
-		tue 2</title>
+	<title>Démo Date After Before - Omnifaces 2.6.3</title>
 </h:head>
 
 <body>
-
 	<p:growl id="growl" autoUpdate="true" />
 
-	<h:form id="mainForm">
+	<p:panel header="Démo" footer="CDT RBN 2017">
 
-		<h:panelGrid columns="3">
+		<p>Démonstration de deux dates liées entre-elles : la date de
+			début est forcément antérieure avec la date de fin.</p>
 
-			<p:outputLabel value="Libellé" for="inputLibelle" />
-			<p:inputText id="inputLibelle" value="#{evenementPageBean.libelle}" />
-			<p:message for="inputLibelle" />
+		<p>Pour cette solution, il faut :</p>
 
-			<p:outputLabel value="Date de début" for="inputDebut" />
-			<p:calendar id="inputDebut" value="#{evenementPageBean.event.debut}" />
-			<p:message for="inputDebut" />
+		<ol>
+			<li>utiliser Omnifaces 2.6.3</li>
+			<li>créer une annotation bean validation, ici <code>@ValidEvenement</code></li>
+			<li>créer l'implémentation de la validation, ici <code>EvenementValidator</code></li>
+			<li>placer l'annotation sur ce qui doit être validé, voir <code>EvenementPageBean</code></li>
+			<li>utiliser &lt;o:validateBean/&gt; dans le <code>&lt;p:commandButton/&gt;</code>
+				du formulaire
+			</li>
+		</ol>
 
-			<p:outputLabel value="Date de fin" for="inputFin" />
-			<p:calendar id="inputFin" value="#{evenementPageBean.event.fin}" />
-			<p:message for="inputFin" />
+		<h:form id="mainForm">
 
-			<p:commandButton 
-			    update="@form"
-				action="#{evenementPageBean.save}" value="Sauvegarder">
-				<!-- 3 - usage d'omnifaces pour valider le bean et ses dates -->
-				<o:validateBean value="#{evenementPageBean.event}" />
-			</p:commandButton>
+			<h:panelGrid columns="3">
+				<p:outputLabel value="Libellé" for="inputLibelle" />
+				<p:inputText id="inputLibelle" value="#{evenementPageBean.libelle}" />
+				<p:message for="inputLibelle" />
 
-		</h:panelGrid>
+				<p:outputLabel value="Date de début" for="inputDebut" />
+				<p:calendar id="inputDebut" value="#{evenementPageBean.event.debut}" />
+				<p:message for="inputDebut" />
 
-		<p:messages />
+				<p:outputLabel value="Date de fin" for="inputFin" />
+				<p:calendar id="inputFin" value="#{evenementPageBean.event.fin}" />
+				<p:message for="inputFin" />
 
-	</h:form>
+				<p:commandButton 
+				    update="@form"
+					actionListener="#{evenementPageBean.save()}" 
+					value="Sauvegarder">
+					<o:validateBean value="#{evenementPageBean.event}" />
+				</p:commandButton>
+				
+			</h:panelGrid>
 
+			<p:messages />
+
+		</h:form>
+	</p:panel>
 </body>
 </html>
