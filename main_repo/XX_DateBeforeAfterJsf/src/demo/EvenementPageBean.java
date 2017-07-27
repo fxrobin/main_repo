@@ -22,19 +22,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @ViewScoped
 @Named
-
-// 3 - annotation placée
 public class EvenementPageBean implements Serializable
 {
 	@Getter
 	@Setter
 	@Size(min = 2)
-	String libelle;
+	private String libelle;
 
 	@Getter
 	@Setter	
 	@Inject
-    Evenement event;
+    private Evenement event;
 	
 
 	public void save()
