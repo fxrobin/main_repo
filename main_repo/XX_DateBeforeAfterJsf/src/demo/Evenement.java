@@ -12,6 +12,7 @@ import lombok.Setter;
 
 @SuppressWarnings("serial")
 @NoArgsConstructor
+
 @ValidEvenement
 @Dependent
 public class Evenement implements Serializable, Cloneable

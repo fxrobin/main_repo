@@ -12,8 +12,6 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-// 1 - contrainte BeanValidation
-
 @Constraint(validatedBy = { EvenementValidator.class })
 @Documented
 @Target({ TYPE, METHOD, FIELD })

@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import lombok.extern.apachecommons.CommonsLog;
 
-// 2 - validator Bean Validation qui va comparer les LocalDate
+
 @CommonsLog
 public class EvenementValidator implements ConstraintValidator<ValidEvenement, Evenement>
 {
